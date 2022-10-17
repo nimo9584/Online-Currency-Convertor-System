@@ -1,0 +1,36 @@
+root = Tk()
+root.title("Currency Convertor System")
+root.geometry("1200x1000")
+root.resizable(False, False)
+root.configure(bg="RoyalBlue")
+
+Label(root, text="Currency Convertor - AB pvt.limited", font=('Comic Sans MS', 18), bg="Yellow", ).place(x=70)
+
+# Convert from entry box
+Label(root, text='Convert from:', font=('Georgia', 13, 'italic'), bg='RoyalBlue').place(x=60, y=60)
+amnt_from = Entry(root, width=25)
+amnt_from.place(x=45, y=100)
+FROM__currency_names = ttk.Combobox(root, state='readonly', values=li_currencies, width=30)
+FROM__currency_names.place(x=20, y=140)
+FROM__currency_names.current((li_currencies.index("INR - Indian Rupee")))
+
+# Convert to entry bon
+Label(root, text='Convert to:', font=('Georgia', 13, 'italic'), bg='RoyalBlue').place(x=330, y=60)
+converted_currency = StringVar(root)
+amnt_to = Entry(root, width=25, textvariable=converted_currency)
+amnt_to.place(x=300, y=100)
+TO__currency_names = ttk.Combobox(root, state='readonly', values=li_currencies, width=30)
+TO__currency_names.place(x=275, y=140)
+TO__currency_names.current((li_currencies.index("INR - Indian Rupee")))
+
+# Submit button
+submit_btn = Button(root, text='Submit', bg='SpringGreen',
+                    command=lambda: convert_currency(api, converted_currency, FROM__currency_names.get(),
+                                                     TO__currency_names.get(), amnt_from.get()))
+submit_btn.place(x=225, y=190)
+
+# Running the GUI
+root.update()
+root.mainloop()
+
+
