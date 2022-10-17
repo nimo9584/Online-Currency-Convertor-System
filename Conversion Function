@@ -1,0 +1,5 @@
+def convert_currency(your_api_code, converted_rate, from_, to, amount):
+    data = requests.get(f'https://v6.exchangerate-api.com/v6/{your_api_code}/pair/{from_[:3]}/{to[:3]}/{amount}')
+    res = data.json()
+    converted_rate.set(str(res['conversion_result']))
+    
