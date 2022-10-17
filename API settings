@@ -1,0 +1,8 @@
+# API - settings
+api = "your_own_api_code"
+li_currencies = list()
+codes = f'https://v6.exchangerate-api.com/v6/{api}/codes'
+codes_res = requests.get(codes)
+for i in codes_res.json()['supported_codes']:
+    li_currencies.append(f'{i[0]} - {i[1]}')
+    
